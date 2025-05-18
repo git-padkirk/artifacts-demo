@@ -1,0 +1,51 @@
+name: Caching workflow
+on: 
+  push:
+    branches:
+      - main
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download code
+        uses: actions/checkout@v4
+      - name: set up node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: caching dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: demo-node-modules-${{ hashFiles('package-lock.json') }}
+      - name: download dependencies
+        run: npm ci
+      - name: Run Tests
+        run: npm run test
+  build:
+    needs: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download code
+        uses: actions/checkout@v4
+      - name: set up node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: caching dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: demo-node-modules-${{ hashFiles('package-lock.json') }}
+      - name: download dependencies
+        run: npm ci
+      - name: Run Build
+        run: npm run build
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Deployment
+        run: echo "Deploying Code ... "
+
+  
