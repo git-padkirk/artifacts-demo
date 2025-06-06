@@ -13,7 +13,7 @@ on:
                     required: true
                     type: string
 jobs:
-  common:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Code checkout
