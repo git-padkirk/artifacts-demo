@@ -1,5 +1,5 @@
 name: Artifacts Usage
-on: push
+on: workflow_dispatch
 jobs:
   Test:
     runs-on: ubuntu-latest
