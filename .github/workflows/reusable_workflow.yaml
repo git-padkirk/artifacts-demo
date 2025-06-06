@@ -1,16 +1,17 @@
 name: Reusablle workflow
-on: workflow_dispatch
-inputs:
-      code_checkout:
-        required: true
-        type: string
-      setup_node:
-        required: true
-        type: string
-        default: '18'
-      dependency_install:
-        required: true
-        type: string
+on: 
+      workflow_call:
+            inputs:
+                  code_checkout:
+                    required: true
+                    type: string
+                  setup_node:
+                    required: true
+                    type: string
+                    default: '18'
+                  dependency_install:
+                    required: true
+                    type: string
 jobs:
   common:
     runs-on: ubuntu-latest
