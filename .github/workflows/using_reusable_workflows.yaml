@@ -1,28 +1,38 @@
 name: Using reusable workflow
 on:
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      code_checkout:
+        required: true
+        type: string
+      setup_node:
+        required: true
+        type: string
+      dependency_install:
+        required: true
+        type: string
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
       - name: Code checkout
-        uses: actions/checkout@v4
+        uses: ./.github/workflows/reusable_workflow.yaml
       - name: Set up node
-        uses: actions/setup-node@v4
+        uses: ./.github/workflows/reusable_workflow.yaml
         with:
           node-version: '18'
       - name: Install dependencies
-        run: npm ci
+        run: ./.github/workflows/reusable_workflow.yaml
       - name: Run lint
         run: npm run lint
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Code checkout
-        uses: actions/checkout@v4
+        uses: ./.github/workflows/reusable_workflow.yaml
       - name: Set up node
-        uses: actions/setup-node@v4
+        uses: ./.github/workflows/reusable_workflow.yaml
         with:
           node-version: '18'
       - name: Install dependencies
@@ -34,9 +44,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
        - name: Code checkout
-         uses: actions/checkout@v4
+         uses: ./.github/workflows/reusable_workflow.yaml
        - name: Set up node
-         uses: actions/setup-node@v4
+         uses: ./.github/workflows/reusable_workflow.yaml
          with:
            node-version: '18'
        - name: Install dependencies
