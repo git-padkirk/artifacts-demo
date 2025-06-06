@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
        - name: Code checkout
-         uses: action/checkout@v4
+         uses: actions/checkout@v4
        - name: Set up node
          uses: actions/setup-node@v4
          with:
@@ -44,7 +44,7 @@ jobs:
        - name: Build the code
          run: npm run build
   deploy:
-    needs: build
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Running the deploy
