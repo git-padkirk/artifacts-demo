@@ -1,0 +1,14 @@
+name: Reusablle workflow
+on: workflow_dispatch
+jobs:
+  common:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v4
+      - name: setup node
+        uses: actions/checkout@v4
+        with:
+          node-version: '18'
+      - name: Build dependencies
+        run: npm ci
