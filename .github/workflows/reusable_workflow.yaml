@@ -1,5 +1,16 @@
 name: Reusablle workflow
-on: workflow_call
+on: workflow_dispatch
+inputs:
+      code_checkout:
+        required: true
+        type: string
+      setup_node:
+        required: true
+        type: string
+        default: '18'
+      dependency_install:
+        required: true
+        type: string
 jobs:
   common:
     runs-on: ubuntu-latest
@@ -9,6 +20,6 @@ jobs:
       - name: setup node
         uses: actions/checkout@v4
         with:
-          node-version: '18'
+          node-version: ${{ inputs.setup_node }}
       - name: Build dependencies
         run: npm ci
