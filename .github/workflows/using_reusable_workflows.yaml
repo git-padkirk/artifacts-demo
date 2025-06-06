@@ -44,7 +44,7 @@ jobs:
        - name: Build the code
          run: npm run build
   deploy:
-    needs: lint
+    needs: [lint, build]
     runs-on: ubuntu-latest
     steps:
       - name: Running the deploy
