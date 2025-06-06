@@ -1,16 +1,6 @@
 name: Using reusable workflow
 on:
-  workflow_call:
-    inputs:
-      code_checkout:
-        required: true
-        type: string
-      setup_node:
-        required: true
-        type: string
-      dependency_install:
-        required: true
-        type: string
+  workflow_dispatch:
 
 jobs:
   lint:
