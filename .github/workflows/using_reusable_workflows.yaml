@@ -36,7 +36,7 @@ jobs:
         with:
           node-version: '18'
       - name: Install dependencies
-        run: npm ci
+        run: ./.github/workflows/reusable_workflow.yaml
       - name: Run the tests
         run: npm run test
   build:
@@ -50,7 +50,7 @@ jobs:
          with:
            node-version: '18'
        - name: Install dependencies
-         run: npm ci
+         run: ./.github/workflows/reusable_workflow.yaml
        - name: Build the code
          run: npm run build
   deploy:
