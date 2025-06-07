@@ -8,7 +8,7 @@ on:
         default: '18'
         description: 'Node.js version to use'
       stage:
-        required: true
+        required: false
         type: string
         description: 'Pipeline stage to run (lint/test/build/deploy)'
       environment:
