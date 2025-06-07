@@ -1,31 +1,55 @@
 name: Reusablle workflow
-on: 
-      workflow_call:
-            inputs:
-                  code_checkout:
-                    required: true
-                    type: string
-                    description: 'Checkout the code'
-                  setup_node:
-                    required: true
-                    type: string
-                    default: '18'
-                    description: 'Installing node'
-                  dependency_install:
-                    required: true
-                    type: string
-                    description: 'Installing dependencies'
+on:
+  workflow_call:
+    inputs:
+      node_version:
+        required: false
+        type: string
+        default: '18'
+        description: 'Node.js version to use'
+      stage:
+        required: true
+        type: string
+        description: 'Pipeline stage to run (lint/test/build/deploy)'
+      environment:
+        required: false
+        type: string
+        description: 'Environment to deploy on'
+
 jobs:
-  lint:
+  pipeline-stage:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+
     steps:
-      - name: Code checkout
-        uses: actions/checkout@v4
-      - name: setup node
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ inputs.setup_node.default }}
-      - name: Build dependencies
+          node-version: ${{ inputs.node_version }}
+          cache: 'npm'
+
+      - name: Install dependencies
         run: npm ci
+
+      - name: Run linting
+        if: inputs.stage == 'lint'
+        run: |
+          npm run lint
+
       - name: Run tests
-        run: npm run test
+        if: inputs.stage == 'test'
+        run: |
+          npm run test
+
+      - name: Build
+        if: inputs.stage == 'build'
+        run: |
+          npm run build
+
+      - name: Deploy
+        if: inputs.stage == 'deploy'
+        run: |
+          npm run deploy
