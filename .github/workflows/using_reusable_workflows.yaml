@@ -4,45 +4,12 @@ on:
 
 jobs:
   lint:
+    name: Lint checking
     uses: ./.github/workflows/reusable_workflow.yaml
-  code_checkout:
+  test:
+    name: Run test
+    needs: lint
     uses: ./.github/workflows/reusable_workflow.yaml
-  setup_node:
+  build:
+    name: Builds Application
     uses: ./.github/workflows/reusable_workflow.yaml
-  dependency_install:
-    uses: ./.github/workflows/reusable_workflow.yaml
-# test:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Code checkout
-#         uses: ./.github/workflows/reusable_workflow.yaml
-#       - name: Set up node
-#         uses: ./.github/workflows/reusable_workflow.yaml
-#         with:
-#           node-version: '18'
-#       - name: Install dependencies
-#         run: ./.github/workflows/reusable_workflow.yaml
-#       - name: Run the tests
-#         run: npm run test
-#   build:
-#     needs: test
-#     runs-on: ubuntu-latest
-#     steps:
-#        - name: Code checkout
-#          uses: ./.github/workflows/reusable_workflow.yaml
-#        - name: Set up node
-#          uses: ./.github/workflows/reusable_workflow.yaml
-#          with:
-#            node-version: '18'
-#        - name: Install dependencies
-#          run: ./.github/workflows/reusable_workflow.yaml
-#        - name: Build the code
-#          run: npm run build
-  deploy:
-    # needs: [lint, build]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Running the deploy
-        run: echo "Deployment initiated..."
-      
-      
