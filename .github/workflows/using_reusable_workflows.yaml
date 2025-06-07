@@ -3,14 +3,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  lint:
-    uses: ./.github/workflows/reusable_workflow.yaml
-    # run-on: ubuntu-latest
-    # steps:
-    #   - name: Run lint
-    #     run: npm run lint
-      
-  test:
+   uses: ./.github/workflows/reusable_workflow.yaml
+
+test:
     runs-on: ubuntu-latest
     steps:
       - name: Code checkout
