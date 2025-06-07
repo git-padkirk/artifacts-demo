@@ -4,9 +4,13 @@ on:
 
 jobs:
   lint:
-    # runs-on: ubuntu-latest
     uses: ./.github/workflows/reusable_workflow.yaml
-
+  code_checkout:
+    uses: ./.github/workflows/reusable_workflow.yaml
+  setup_node:
+    uses: ./.github/workflows/reusable_workflow.yaml
+  dependency_install:
+    uses: ./.github/workflows/reusable_workflow.yaml
 # test:
 #     runs-on: ubuntu-latest
 #     steps:
