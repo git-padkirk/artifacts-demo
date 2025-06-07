@@ -4,18 +4,12 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Code checkout
-        uses: ./.github/workflows/reusable_workflow.yaml
-      - name: Set up node
-        uses: ./.github/workflows/reusable_workflow.yaml
-        with:
-          node-version: '18'
-      - name: Install dependencies
-        run: ./.github/workflows/reusable_workflow.yaml
-      - name: Run lint
-        run: npm run lint
+    uses: ./.github/workflows/reusable_workflow.yaml
+    # run-on: ubuntu-latest
+    # steps:
+    #   - name: Run lint
+    #     run: npm run lint
+      
   test:
     runs-on: ubuntu-latest
     steps:
