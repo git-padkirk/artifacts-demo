@@ -4,7 +4,8 @@ on:
 
 jobs:
   lint:
-     uses: ./.github/workflows/reusable_workflow.yaml
+    runs-on: ubuntu-latest
+    uses: ./.github/workflows/reusable_workflow.yaml
 
 test:
     runs-on: ubuntu-latest
