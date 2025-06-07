@@ -5,13 +5,16 @@ on:
                   code_checkout:
                     required: true
                     type: string
+                    description: 'Checkout the code'
                   setup_node:
                     required: true
                     type: string
                     default: '18'
+                    description: 'Installing node'
                   dependency_install:
                     required: true
                     type: string
+                    description: 'Installing dependencies'
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -21,6 +24,8 @@ jobs:
       - name: setup node
         uses: actions/checkout@v4
         with:
-          node-version: ${{ inputs.setup_node }}
+          node-version: ${{ inputs.setup_node.default }}
       - name: Build dependencies
         run: npm ci
+      - name: Run tests
+        run: npm run test
