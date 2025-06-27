@@ -1,5 +1,16 @@
 name: Composite Action
 description: 'Testing the composite action'
+inputs:
+      environment:
+        description: 'Environment to run the jobs'
+        required: true
+        type: choice
+        options:
+          - production
+          - staging
+          - qa
+          - dev
+        default: production
 
 runs:
   using: 'composite'
