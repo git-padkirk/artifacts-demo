@@ -5,12 +5,6 @@ inputs:
         description: 'Environment to run the jobs'
         required: true
         type: choice
-        options:
-          - production
-          - staging
-          - qa
-          - dev
-        default: production
 
 runs:
   using: 'composite'
@@ -23,7 +17,7 @@ runs:
       uses: actions/setup-node@v4
       with:|
         node-version: '22'
-        environment::{{ github.events.inputs.environment }}
+        environment:{{ github.events.inputs.environment }}
     - name: 'Install dependencies'
       run: npm ci:{{ github.events.inputs.environment }}
       shell: bash
