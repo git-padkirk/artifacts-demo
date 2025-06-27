@@ -8,18 +8,21 @@ jobs:
     steps:
       - name: Get code and set up node
         uses: ./.github/actions
+        with:
+          environment: ${{ github.events.inputs.environment }}
       - name: Lint code
-        run: npm run lint:${{ github.events.inputs.environment }}
+        run: npm run lint
       - name: Test code
-        run: npm run test:${{ github.events.inputs.environment }}
+        run: npm run test
+        
   build:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: Get code
-        uses: actions/checkout@v4
-      - name: Set up node
+      - name: Get code and set up node
         uses: ./.github/actions
+        with:
+          environment: ${{ github.events.inputs.environment }}
       - name: Build website
         run: npm run build
       - name: Upload artifacts
