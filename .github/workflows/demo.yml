@@ -1,6 +1,15 @@
 name: Deploy website
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select environments based on options'
+        type: choice
+        options:
+          - production
+          - staging
+          - qa
+          - dev
     
 jobs:
   test:
