@@ -4,7 +4,6 @@ inputs:
       environment:
         description: 'Environment to run the jobs'
         required: true
-        type: choice
 
 runs:
   using: 'composite'
