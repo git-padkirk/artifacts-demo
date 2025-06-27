@@ -10,6 +10,12 @@ on:
           - staging
           - qa
           - dev
+      
+      notify:
+        description: 'Deployment notification'
+        required: true
+        type: boolean
+        default: false
     
 jobs:
   test:
