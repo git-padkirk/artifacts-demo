@@ -20,12 +20,10 @@ jobs:
     steps:
       - name: Get code and set up node
         uses: ./.github/actions
-        with:
-          environment: ${{ github.events.inputs.environment }}
       - name: Lint code
-        run: npm run lint
+        run: npm run lint:${{ github.events.inputs.environment }}
       - name: Test code
-        run: npm run test
+        run: npm run test:${{ github.events.inputs.environment }}
   build:
     needs: test
     runs-on: ubuntu-latest
