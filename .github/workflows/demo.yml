@@ -1,6 +1,18 @@
 name: Deploy website
 on:
   workflow_dispatch:
+
+inputs:
+  environment:
+    description: 'Environment to run the jobs'
+    required: true
+    type: choice
+    options:
+      - production
+      - staging
+      - qa
+      - dev
+    default: production
     
 jobs:
   test:
