@@ -17,6 +17,6 @@ jobs:
         with:
           node-version: ${{matrix.node-version}}
       - name: Install dependencies
-        run: npm run ci
+        run: npm ci
       - name: Lint the code
         run: npm run lint
