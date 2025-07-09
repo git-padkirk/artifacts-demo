@@ -1,0 +1,22 @@
+name: Matrix Strategy
+on: 
+  workflow_dispatch
+
+jobs:
+  lint:
+    strategy:
+      matrix:
+       node-version: [18, 20, 22]
+       operatingSystem: ['ubuntu-latest', 'mac']
+    runs-on: ${{matrix.operatingSystem}}
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v3
+      - name: set up node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{matrix.node-version}}
+      - name: Install dependencies
+        run: npm run ci
+      - name: Lint the code
+        run: npm run lint
