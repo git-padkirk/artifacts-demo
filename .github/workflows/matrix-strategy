@@ -20,3 +20,14 @@ jobs:
         run: npm run ci
       - name: Lint the code
         run: npm run lint
+
+  test:
+    needs: lint
+      runs-on: ${{matrix.operatingSystem}}
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+        - name: Set up node
+          uses: actions/setup-node@v4
+          with:
+            node-version: ${{matrix.node-version}}
