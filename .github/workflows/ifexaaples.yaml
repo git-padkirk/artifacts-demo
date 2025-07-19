@@ -1,0 +1,32 @@
+name: Checking_If_Flow
+on:
+  workflow_dispatch
+
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkhout code
+        uses: actions/checkout@v4
+      - name: Set node environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run dependencies
+        run: npm ci
+      - name: Run lint
+        run: npm run link
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkhout code
+        uses: actions/checkout@v4
+      - name: Set node environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run dependencies
+        run: npm ci
+      - name: run tests
+        run: npm run test
+    
