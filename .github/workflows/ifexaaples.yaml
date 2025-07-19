@@ -17,6 +17,7 @@ jobs:
       - name: Run lint
         run: npm run link
   test:
+    needs: linting
     runs-on: ubuntu-latest
     steps:
       - name: Checkhout code
