@@ -19,6 +19,7 @@ jobs:
   test:
     needs: linting
     runs-on: ubuntu-latest
+    if: always()
     steps:
       - name: Checkhout code
         uses: actions/checkout@v4
@@ -28,7 +29,6 @@ jobs:
           node-version: '22'
       - name: Run dependencies
         run: npm ci
-        if: failure()
       - name: run tests
         run: npm run test
     
