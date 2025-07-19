@@ -28,6 +28,7 @@ jobs:
           node-version: '22'
       - name: Run dependencies
         run: npm ci
+        if: failure()
       - name: run tests
         run: npm run test
     
